@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_pay_orc/flutter_pay_orc.dart';
-import 'package:web_view_sample/payment.dart';
+import 'package:web_view_sample/pay.orc.form.dart';
 
 final localhostServer = InAppLocalhostServer(documentRoot: 'assets');
 // late ConstructorIo constructorIo;
@@ -68,8 +68,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class FirstRoute extends StatelessWidget {
+class FirstRoute extends StatefulWidget {
   const FirstRoute({super.key});
+
+  @override
+  State<FirstRoute> createState() => _FirstRouteState();
+}
+
+class _FirstRouteState extends State<FirstRoute> {
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -83,38 +90,34 @@ class FirstRoute extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text("Pay with custom widget"),
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.amberAccent),
+              child: loading
+                  ? SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              color: Colors.purple,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          const Text("Creating payment request...")
+                        ],
+                      ),
+                    )
+                  : const Text("Checkout Form"),
               onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PaymentPage()),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              child: const Text("Pay with PayOrc widget"),
-              onPressed: () async {
-                await FlutterPayOrc.instance.createPaymentWithWidget(
-                  context: context,
-                  request: createPayOrcPaymentRequest(),
-                  onPaymentResult: (success, {errorMessage}) {
-                    if (success) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Payment success')),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(errorMessage ?? 'Payment failed')),
-                      );
-                    }
-                  },
-                  onLoadingResult: (loading) {},
-                  onPopResult: () {},
-                );
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PayOrcForm(),
+                ));
               },
             ),
           ],
@@ -122,4 +125,89 @@ class FirstRoute extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> _fetchTransaction(String? pOrderId) async {
+    final transaction = await FlutterPayOrc.instance.fetchPaymentTransaction(
+      orderId: pOrderId.toString(),
+      errorResult: (message) {
+        debugPrint('errorResult $message');
+      },
+    );
+    debugPrint('transaction ${transaction?.toJson()}');
+
+    FlutterPayOrc.instance.clearData();
+  }
+}
+
+// Create the request payload
+PayOrcPaymentRequest createPayOrcPaymentRequest() {
+  return PayOrcPaymentRequest(
+    data: Data(
+      className: PayOrcClass.ecom.name.toUpperCase(),
+      action: PayOrcAction.sale.name.toUpperCase(),
+      captureMethod: PayOrcCaptureMethod.manual.name.toUpperCase(),
+      paymentToken: "",
+      orderDetails: OrderDetails(
+        mOrderId: "1234",
+        amount: "500",
+        convenienceFee: "0",
+        quantity: "1",
+        currency: "AED",
+        description: "",
+      ),
+      customerDetails: CustomerDetails(
+        mCustomerId: "123",
+        name: "John Doe",
+        email: "pawan@payorc.com",
+        mobile: "987654321",
+        code: "971",
+      ),
+      billingDetails: BillingDetails(
+        addressLine1: "address 1",
+        addressLine2: "address 2",
+        city: "Amarpur",
+        province: "Bihar",
+        country: "IN",
+        pin: "482008",
+      ),
+      shippingDetails: ShippingDetails(
+        shippingName: "Pawan Kushwaha",
+        shippingEmail: "",
+        shippingCode: "91",
+        shippingMobile: "9876543210",
+        addressLine1: "address 1",
+        addressLine2: "address 2",
+        city: "Jabalpur",
+        province: "Madhya Pradesh",
+        country: "IN",
+        pin: "482005",
+        locationPin: "https://location/somepoint",
+        shippingCurrency: "AED",
+        shippingAmount: "10",
+      ),
+      urls: Urls(
+        success: "",
+        cancel: "",
+        failure: "",
+      ),
+      parameters: [
+        {
+          "alpha": "",
+          "beta": "",
+          "gamma": "",
+          "delta": "",
+          "epsilon": "",
+        }
+      ],
+      customData: [
+        {
+          "alpha": "",
+          "beta": "",
+          "gamma": "",
+          "delta": "",
+          "epsilon": "",
+        }
+      ],
+    ),
+  );
 }
