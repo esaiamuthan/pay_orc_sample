@@ -93,7 +93,7 @@ class _FirstRouteState extends State<FirstRoute> {
               style:
                   ElevatedButton.styleFrom(backgroundColor: Colors.amberAccent),
               child: loading
-                  ? SizedBox(
+                  ? const SizedBox(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,14 +109,14 @@ class _FirstRouteState extends State<FirstRoute> {
                           SizedBox(
                             width: 16,
                           ),
-                          const Text("Creating payment request...")
+                          Text("Creating payment request...")
                         ],
                       ),
                     )
                   : const Text("Checkout Form"),
               onPressed: () async {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PayOrcForm(),
+                  builder: (context) => const PayOrcForm(),
                 ));
               },
             ),
@@ -125,89 +125,4 @@ class _FirstRouteState extends State<FirstRoute> {
       ),
     );
   }
-
-  Future<void> _fetchTransaction(String? pOrderId) async {
-    final transaction = await FlutterPayOrc.instance.fetchPaymentTransaction(
-      orderId: pOrderId.toString(),
-      errorResult: (message) {
-        debugPrint('errorResult $message');
-      },
-    );
-    debugPrint('transaction ${transaction?.toJson()}');
-
-    FlutterPayOrc.instance.clearData();
-  }
-}
-
-// Create the request payload
-PayOrcPaymentRequest createPayOrcPaymentRequest() {
-  return PayOrcPaymentRequest(
-    data: Data(
-      className: PayOrcClass.ecom.name.toUpperCase(),
-      action: PayOrcAction.sale.name.toUpperCase(),
-      captureMethod: PayOrcCaptureMethod.manual.name.toUpperCase(),
-      paymentToken: "",
-      orderDetails: OrderDetails(
-        mOrderId: "1234",
-        amount: "500",
-        convenienceFee: "0",
-        quantity: "1",
-        currency: "AED",
-        description: "",
-      ),
-      customerDetails: CustomerDetails(
-        mCustomerId: "123",
-        name: "John Doe",
-        email: "pawan@payorc.com",
-        mobile: "987654321",
-        code: "971",
-      ),
-      billingDetails: BillingDetails(
-        addressLine1: "address 1",
-        addressLine2: "address 2",
-        city: "Amarpur",
-        province: "Bihar",
-        country: "IN",
-        pin: "482008",
-      ),
-      shippingDetails: ShippingDetails(
-        shippingName: "Pawan Kushwaha",
-        shippingEmail: "",
-        shippingCode: "91",
-        shippingMobile: "9876543210",
-        addressLine1: "address 1",
-        addressLine2: "address 2",
-        city: "Jabalpur",
-        province: "Madhya Pradesh",
-        country: "IN",
-        pin: "482005",
-        locationPin: "https://location/somepoint",
-        shippingCurrency: "AED",
-        shippingAmount: "10",
-      ),
-      urls: Urls(
-        success: "",
-        cancel: "",
-        failure: "",
-      ),
-      parameters: [
-        {
-          "alpha": "",
-          "beta": "",
-          "gamma": "",
-          "delta": "",
-          "epsilon": "",
-        }
-      ],
-      customData: [
-        {
-          "alpha": "",
-          "beta": "",
-          "gamma": "",
-          "delta": "",
-          "epsilon": "",
-        }
-      ],
-    ),
-  );
 }

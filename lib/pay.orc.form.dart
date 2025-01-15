@@ -103,17 +103,17 @@ class _PayOrcFormState extends State<PayOrcForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PayOrc Payment Form'),
+        title: const Text('PayOrc Payment Form'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropdownButtonFormField<PayOrcClass>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Class Name',
                   border: OutlineInputBorder(),
                 ),
@@ -132,9 +132,9 @@ class _PayOrcFormState extends State<PayOrcForm> {
                 validator: (value) =>
                     value == null ? 'Please select a class name' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<PayOrcAction>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Action',
                   border: OutlineInputBorder(),
                 ),
@@ -153,9 +153,9 @@ class _PayOrcFormState extends State<PayOrcForm> {
                 validator: (value) =>
                     value == null ? 'Please select an action' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<PayOrcCaptureMethod>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Capture Method',
                   border: OutlineInputBorder(),
                 ),
@@ -174,160 +174,164 @@ class _PayOrcFormState extends State<PayOrcForm> {
                 validator: (value) =>
                     value == null ? 'Please select a capture method' : null,
               ),
-              SizedBox(height: 24),
-              Text('Order Details',
+              const SizedBox(height: 24),
+              const Text('Order Details',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: _orderIdController,
-                decoration: InputDecoration(labelText: 'Order ID'),
+                decoration: const InputDecoration(labelText: 'Order ID'),
                 validator: (value) =>
                     value == null || value.isEmpty ? 'Required' : null,
               ),
               TextFormField(
                 controller: _amountController,
-                decoration: InputDecoration(labelText: 'Amount'),
+                decoration: const InputDecoration(labelText: 'Amount'),
                 validator: (value) =>
                     value == null || value.isEmpty ? 'Required' : null,
               ),
               TextFormField(
                 controller: _convenienceFeeController,
-                decoration: InputDecoration(labelText: 'Convenience Fee'),
+                decoration: const InputDecoration(labelText: 'Convenience Fee'),
               ),
               TextFormField(
                 controller: _quantityController,
-                decoration: InputDecoration(labelText: 'Quantity'),
+                decoration: const InputDecoration(labelText: 'Quantity'),
               ),
               TextFormField(
                 controller: _currencyController,
-                decoration: InputDecoration(labelText: 'Currency'),
+                decoration: const InputDecoration(labelText: 'Currency'),
               ),
               TextFormField(
                 controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
               ),
-              SizedBox(height: 16),
-              Text('Customer Details',
+              const SizedBox(height: 16),
+              const Text('Customer Details',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: _customerIdController,
-                decoration: InputDecoration(labelText: 'Customer ID'),
+                decoration: const InputDecoration(labelText: 'Customer ID'),
               ),
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
               ),
               TextFormField(
                 controller: _mobileController,
-                decoration: InputDecoration(labelText: 'Mobile'),
+                decoration: const InputDecoration(labelText: 'Mobile'),
               ),
               TextFormField(
                 controller: _codeController,
-                decoration: InputDecoration(labelText: 'Code'),
+                decoration: const InputDecoration(labelText: 'Code'),
               ),
-              SizedBox(height: 16),
-              Text('Billing Details',
+              const SizedBox(height: 16),
+              const Text('Billing Details',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: _billingAddress1Controller,
-                decoration: InputDecoration(labelText: 'Address Line 1'),
+                decoration: const InputDecoration(labelText: 'Address Line 1'),
               ),
               TextFormField(
                 controller: _billingAddress2Controller,
-                decoration: InputDecoration(labelText: 'Address Line 2'),
+                decoration: const InputDecoration(labelText: 'Address Line 2'),
               ),
               TextFormField(
                 controller: _billingCityController,
-                decoration: InputDecoration(labelText: 'City'),
+                decoration: const InputDecoration(labelText: 'City'),
               ),
               TextFormField(
                 controller: _billingProvinceController,
-                decoration: InputDecoration(labelText: 'Province'),
+                decoration: const InputDecoration(labelText: 'Province'),
               ),
               TextFormField(
                 controller: _billingCountryController,
-                decoration: InputDecoration(labelText: 'Country'),
+                decoration: const InputDecoration(labelText: 'Country'),
               ),
               TextFormField(
                 controller: _billingPinController,
-                decoration: InputDecoration(labelText: 'Pin'),
+                decoration: const InputDecoration(labelText: 'Pin'),
               ),
-              SizedBox(height: 16),
-              Text('Shipping Details',
+              const SizedBox(height: 16),
+              const Text('Shipping Details',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: _shippingNameController,
-                decoration: InputDecoration(labelText: 'Shipping Name'),
+                decoration: const InputDecoration(labelText: 'Shipping Name'),
               ),
               TextFormField(
                 controller: _shippingEmailController,
-                decoration: InputDecoration(labelText: 'Shipping Email'),
+                decoration: const InputDecoration(labelText: 'Shipping Email'),
               ),
               TextFormField(
                 controller: _shippingCodeController,
-                decoration: InputDecoration(labelText: 'Shipping Code'),
+                decoration: const InputDecoration(labelText: 'Shipping Code'),
               ),
               TextFormField(
                 controller: _shippingMobileController,
-                decoration: InputDecoration(labelText: 'Shipping Mobile'),
+                decoration: const InputDecoration(labelText: 'Shipping Mobile'),
               ),
               TextFormField(
                 controller: _shippingAddress1Controller,
                 decoration:
-                    InputDecoration(labelText: 'Shipping Address Line 1'),
+                    const InputDecoration(labelText: 'Shipping Address Line 1'),
               ),
               TextFormField(
                 controller: _shippingAddress2Controller,
                 decoration:
-                    InputDecoration(labelText: 'Shipping Address Line 2'),
+                    const InputDecoration(labelText: 'Shipping Address Line 2'),
               ),
               TextFormField(
                 controller: _shippingCityController,
-                decoration: InputDecoration(labelText: 'Shipping City'),
+                decoration: const InputDecoration(labelText: 'Shipping City'),
               ),
               TextFormField(
                 controller: _shippingProvinceController,
-                decoration: InputDecoration(labelText: 'Shipping Province'),
+                decoration:
+                    const InputDecoration(labelText: 'Shipping Province'),
               ),
               TextFormField(
                 controller: _shippingCountryController,
-                decoration: InputDecoration(labelText: 'Shipping Country'),
+                decoration:
+                    const InputDecoration(labelText: 'Shipping Country'),
               ),
               TextFormField(
                 controller: _shippingPinController,
-                decoration: InputDecoration(labelText: 'Shipping Pin'),
+                decoration: const InputDecoration(labelText: 'Shipping Pin'),
               ),
               TextFormField(
                 controller: _locationPinController,
-                decoration: InputDecoration(labelText: 'Location Pin'),
+                decoration: const InputDecoration(labelText: 'Location Pin'),
               ),
               TextFormField(
                 controller: _shippingCurrencyController,
-                decoration: InputDecoration(labelText: 'Shipping Currency'),
+                decoration:
+                    const InputDecoration(labelText: 'Shipping Currency'),
               ),
               TextFormField(
                 controller: _shippingAmountController,
-                decoration: InputDecoration(labelText: 'Shipping Amount'),
+                decoration: const InputDecoration(labelText: 'Shipping Amount'),
               ),
-              SizedBox(height: 16),
-              Text("URLs", style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 16),
+              const Text("URLs", style: TextStyle(fontWeight: FontWeight.bold)),
               TextFormField(
                 controller: _successController,
-                decoration: InputDecoration(labelText: "Success URL"),
+                decoration: const InputDecoration(labelText: "Success URL"),
               ),
               TextFormField(
                 controller: _cancelController,
-                decoration: InputDecoration(labelText: "Cancel URL"),
+                decoration: const InputDecoration(labelText: "Cancel URL"),
               ),
               TextFormField(
                 controller: _failureController,
-                decoration: InputDecoration(labelText: "Failure URL"),
+                decoration: const InputDecoration(labelText: "Failure URL"),
               ),
-              SizedBox(height: 16.0),
-              Text("Parameters", style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 16.0),
+              const Text("Parameters",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               ..._parametersControllers.map((controllers) {
                 return Column(
                   children: controllers.entries.map((entry) {
@@ -338,8 +342,8 @@ class _PayOrcFormState extends State<PayOrcForm> {
                   }).toList(),
                 );
               }),
-              SizedBox(height: 16.0),
-              Text("Custom Data",
+              const SizedBox(height: 16.0),
+              const Text("Custom Data",
                   style: TextStyle(fontWeight: FontWeight.bold)),
               ..._customDataControllers.map((controllers) {
                 return Column(
@@ -351,14 +355,14 @@ class _PayOrcFormState extends State<PayOrcForm> {
                   }).toList(),
                 );
               }),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amberAccent),
                 onPressed: () {
                   _createPaymentRequest();
                 },
-                child: Text("Pay now with PayOrc widget"),
+                child: const Text("Pay now with PayOrc widget"),
               ),
             ],
           ),
@@ -509,32 +513,54 @@ class _PayOrcFormState extends State<PayOrcForm> {
         context: context,
         request: createPayOrcPaymentRequest(),
         onPopResult: (String? pOrderId) async {
-          await _fetchTransaction(pOrderId);
-        },
-        errorResult: (message) {
-          debugPrint('errorResult : $message');
-        },
-        onLoadingResult: (bool success) {
           setState(() {
             _selectedCaptureMethod = null;
             _selectedClassName = null;
             _selectedAction = null;
           });
-
           dispose();
+          await _fetchTransaction(context, pOrderId);
+        },
+        errorResult: (message) {
+          debugPrint('errorResult : $message');
+          _showErrorAlert(context, message);
+        },
+        onLoadingResult: (bool success) {
           debugPrint('onLoadingResult : $success');
         });
   }
 
-  Future<void> _fetchTransaction(String? pOrderId) async {
+  Future<void> _fetchTransaction(BuildContext context, String? pOrderId) async {
     final transaction = await FlutterPayOrc.instance.fetchPaymentTransaction(
       orderId: pOrderId.toString(),
       errorResult: (message) {
         debugPrint('errorResult $message');
+        _showErrorAlert(context, message);
       },
     );
-    debugPrint('transaction ${transaction?.toJson()}');
+    if (transaction != null) {
+      debugPrint('transaction ${transaction.toJson()}');
+      FlutterPayOrc.instance.clearData();
+    }
+  }
 
-    FlutterPayOrc.instance.clearData();
+  void _showErrorAlert(BuildContext context, String? message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text('$message'),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
