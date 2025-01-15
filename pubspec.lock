@@ -236,7 +236,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_inappwebview:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_inappwebview
       sha256: "80092d13d3e29b6227e25b67973c67c7210bd5e35c4b747ca908e31eb71a46d5"
@@ -311,10 +311,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_pay_orc
-      sha256: "6c333b9ef9b629943b62db1c06a26fa09a433625756845ffa4b4bf2ae3301b59"
+      sha256: "0913b597b6fa2b2d0ef930797a1564d4ecba006349225e4c18d586f8848705cc"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.4"
+    version: "0.0.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
