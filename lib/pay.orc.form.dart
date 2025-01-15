@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_pay_orc/flutter_pay_orc.dart';
 
@@ -77,6 +79,101 @@ class _PayOrcFormState extends State<PayOrcForm> {
   final List<Map<String, TextEditingController>> _parametersControllers = [];
   final List<Map<String, TextEditingController>> _customDataControllers = [];
 
+  final names = [
+    'John John',
+    'Jane John',
+    'Alex John',
+    'Chris John',
+    'Taylor John'
+  ];
+  final List<String> phoneNumbers =
+      List.generate(20, (index) => _generateRandomPhoneNumber());
+
+  static String _generateRandomPhoneNumber() {
+    final random = Random();
+    // Generate a random 10-digit phone number
+    String number = '';
+    for (int i = 0; i < 10; i++) {
+      number += random.nextInt(10).toString();
+    }
+    return number;
+  }
+
+  final List<String> phoneCodes = [
+    "1",
+    "44",
+    "91",
+    "1",
+    "61",
+    "49",
+    "33",
+    "81",
+    "86",
+    "55"
+  ];
+
+  final cities = [
+    "Springfield",
+    "Riverside",
+    "Fairview",
+    "Centerville",
+    "Franklin"
+  ];
+  final states = ["CA", "TX", "NY", "FL", "IL"];
+  final List<String> addresses =
+      List.generate(20, (index) => _generateRandomAddress());
+
+  static String _generateRandomAddress() {
+    const streets = [
+      "Main St",
+      "Highland Ave",
+      "Elm St",
+      "Maple Ave",
+      "Broadway",
+      "Park Rd",
+      "Sunset Blvd"
+    ];
+    final random = Random();
+    final street =
+        "${random.nextInt(9999) + 1} ${streets[random.nextInt(streets.length)]}";
+    return street;
+  }
+
+  final List<String> emailList =
+      List.generate(20, (index) => _generateRandomEmail());
+
+  static String _generateRandomEmail() {
+    const firstNames = [
+      'john',
+      'jane',
+      'alex',
+      'mike',
+      'sarah',
+      'emily',
+      'david',
+      'laura'
+    ];
+    const domains = [
+      'gmail.com',
+      'yahoo.com',
+      'outlook.com',
+      'hotmail.com',
+      'example.com'
+    ];
+    final random = Random();
+
+    // Select a random first name
+    final firstName = firstNames[random.nextInt(firstNames.length)];
+    // Append a random number to the name
+    final number = random.nextInt(9999).toString();
+    // Select a random domain
+    final domain = domains[random.nextInt(domains.length)];
+
+    return '$firstName$number@$domain';
+  }
+
+  final random = Random();
+
   @override
   void initState() {
     // Initialize the controllers for parameters and customData
@@ -104,6 +201,64 @@ class _PayOrcFormState extends State<PayOrcForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('PayOrc Payment Form'),
+        actions: [
+          TextButton(
+              onPressed: () {
+                // Names
+                _nameController.text = names[random.nextInt(names.length)];
+                _shippingNameController.text =
+                    names[random.nextInt(names.length)];
+
+                // email
+                _emailController.text =
+                    emailList[random.nextInt(emailList.length)];
+                _shippingEmailController.text =
+                    emailList[random.nextInt(emailList.length)];
+
+                // address
+                _billingAddress1Controller.text =
+                    addresses[random.nextInt(addresses.length)];
+                _billingAddress2Controller.text =
+                    addresses[random.nextInt(addresses.length)];
+                _shippingAddress1Controller.text =
+                    addresses[random.nextInt(addresses.length)];
+                _shippingAddress2Controller.text =
+                    addresses[random.nextInt(addresses.length)];
+
+                // city
+                _billingCityController.text =
+                    cities[random.nextInt(cities.length)];
+                _shippingCityController.text =
+                    cities[random.nextInt(cities.length)];
+
+                // city
+                _mobileController.text =
+                    phoneNumbers[random.nextInt(phoneNumbers.length)];
+                _shippingMobileController.text =
+                    phoneNumbers[random.nextInt(phoneNumbers.length)];
+
+                _codeController.text =
+                    phoneCodes[random.nextInt(phoneCodes.length)];
+                _shippingCodeController.text =
+                    phoneCodes[random.nextInt(phoneCodes.length)];
+
+                // zipcode
+                _billingPinController.text = "${random.nextInt(89999) + 10000}";
+                _shippingPinController.text =
+                    "${random.nextInt(89999) + 10000}";
+
+                _orderIdController.text = "${random.nextInt(89999) + 10000}";
+                _customerIdController.text = "${random.nextInt(89999) + 10000}";
+
+                _currencyController.text = "AED";
+                _shippingCurrencyController.text = "AED";
+
+                _amountController.text = "100";
+                _shippingAmountController.text = "10";
+                _convenienceFeeController.text = "2";
+              },
+              child: const Text('Prefill'))
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -373,57 +528,7 @@ class _PayOrcFormState extends State<PayOrcForm> {
 
   @override
   void dispose() {
-    // Dispose all controllers
-    _orderIdController.clear();
-    _amountController.clear();
-    _convenienceFeeController.clear();
-    _quantityController.clear();
-    _currencyController.clear();
-    _descriptionController.clear();
-
-    _customerIdController.clear();
-    _nameController.clear();
-    _emailController.clear();
-    _mobileController.clear();
-    _codeController.clear();
-
-    _billingAddress1Controller.clear();
-    _billingAddress2Controller.clear();
-    _billingCityController.clear();
-    _billingProvinceController.clear();
-    _billingCountryController.clear();
-    _billingPinController.clear();
-
-    _shippingNameController.clear();
-    _shippingEmailController.clear();
-    _shippingCodeController.clear();
-    _shippingMobileController.clear();
-    _shippingAddress1Controller.clear();
-    _shippingAddress2Controller.clear();
-    _shippingCityController.clear();
-    _shippingProvinceController.clear();
-    _shippingCountryController.clear();
-    _shippingPinController.clear();
-    _locationPinController.clear();
-    _shippingCurrencyController.clear();
-    _shippingAmountController.clear();
-
-    _successController.clear();
-    _cancelController.clear();
-    _failureController.clear();
-
-    for (var map in _parametersControllers) {
-      for (var controller in map.values) {
-        controller.clear();
-      }
-    }
-
-    for (var map in _customDataControllers) {
-      for (var controller in map.values) {
-        controller.clear();
-      }
-    }
-
+    _clearAllFields();
     super.dispose();
   }
 
@@ -513,12 +618,7 @@ class _PayOrcFormState extends State<PayOrcForm> {
         context: context,
         request: createPayOrcPaymentRequest(),
         onPopResult: (String? pOrderId) async {
-          setState(() {
-            _selectedCaptureMethod = null;
-            _selectedClassName = null;
-            _selectedAction = null;
-          });
-          dispose();
+          _clearAllFields();
           await _fetchTransaction(context, pOrderId);
         },
         errorResult: (message) {
@@ -562,5 +662,63 @@ class _PayOrcFormState extends State<PayOrcForm> {
         );
       },
     );
+  }
+
+  void _clearAllFields() {
+    setState(() {
+      _selectedCaptureMethod = null;
+      _selectedClassName = null;
+      _selectedAction = null;
+    });
+
+    _orderIdController.clear();
+    _amountController.clear();
+    _convenienceFeeController.clear();
+    _quantityController.clear();
+    _currencyController.clear();
+    _descriptionController.clear();
+
+    _customerIdController.clear();
+    _nameController.clear();
+    _emailController.clear();
+    _mobileController.clear();
+    _codeController.clear();
+
+    _billingAddress1Controller.clear();
+    _billingAddress2Controller.clear();
+    _billingCityController.clear();
+    _billingProvinceController.clear();
+    _billingCountryController.clear();
+    _billingPinController.clear();
+
+    _shippingNameController.clear();
+    _shippingEmailController.clear();
+    _shippingCodeController.clear();
+    _shippingMobileController.clear();
+    _shippingAddress1Controller.clear();
+    _shippingAddress2Controller.clear();
+    _shippingCityController.clear();
+    _shippingProvinceController.clear();
+    _shippingCountryController.clear();
+    _shippingPinController.clear();
+    _locationPinController.clear();
+    _shippingCurrencyController.clear();
+    _shippingAmountController.clear();
+
+    _successController.clear();
+    _cancelController.clear();
+    _failureController.clear();
+
+    for (var map in _parametersControllers) {
+      for (var controller in map.values) {
+        controller.clear();
+      }
+    }
+
+    for (var map in _customDataControllers) {
+      for (var controller in map.values) {
+        controller.clear();
+      }
+    }
   }
 }
