@@ -131,6 +131,10 @@ class _FirstRouteState extends State<FirstRoute> {
   }
 
   void _validateMerchantKeys() async {
+
+    debugPrint(FlutterPayOrc.instance.preferenceHelper.merchantKey);
+    debugPrint(FlutterPayOrc.instance.preferenceHelper.merchantSecret);
+
     await FlutterPayOrc.instance.validateMerchantKeys(
         request: PayOrcKeysRequest(
             merchantKey: 'test-JR11KGG26DM',

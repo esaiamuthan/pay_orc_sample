@@ -587,11 +587,19 @@ class _PayOrcFormState extends State<PayOrcForm> {
           {
             "alpha":
                 _parametersControllers.first["alpha"]?.value.text.toString(),
+          },
+          {
             "beta": _parametersControllers.first["beta"]?.value.text.toString(),
+          },
+          {
             "gamma":
                 _parametersControllers.first["gamma"]?.value.text.toString(),
+          },
+          {
             "delta":
                 _parametersControllers.first["delta"]?.value.text.toString(),
+          },
+          {
             "epsilon":
                 _parametersControllers.first["epsilon"]?.value.text.toString(),
           }
@@ -600,11 +608,19 @@ class _PayOrcFormState extends State<PayOrcForm> {
           {
             "alpha":
                 _customDataControllers.first["alpha"]?.value.text.toString(),
+          },
+          {
             "beta": _customDataControllers.first["beta"]?.value.text.toString(),
+          },
+          {
             "gamma":
                 _customDataControllers.first["gamma"]?.value.text.toString(),
+          },
+          {
             "delta":
                 _customDataControllers.first["delta"]?.value.text.toString(),
+          },
+          {
             "epsilon":
                 _customDataControllers.first["epsilon"]?.value.text.toString(),
           }
