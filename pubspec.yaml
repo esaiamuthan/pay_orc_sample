@@ -37,10 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   build_runner: ^2.4.13
   url_launcher: ^6.3.1
-#  flutter_pay_orc: ^0.0.5
+  flutter_pay_orc: ^0.0.6
 
-  flutter_pay_orc:
-    path: /home/ocs-60/StudioProjects/flutter_pay_orc
+  # flutter_pay_orc:
+    # path: /home/ocs-60/StudioProjects/flutter_pay_orc
 #    path: D:\AndroidStudioProjects\flutter_pay_orc
 
 dev_dependencies:
