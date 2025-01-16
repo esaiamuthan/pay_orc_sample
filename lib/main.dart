@@ -17,15 +17,15 @@ Future main() async {
   if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
     final availableVersion = await WebViewEnvironment.getAvailableVersion();
     assert(availableVersion != null,
-    'Failed to find an installed WebView2 runtime or non-stable Microsoft Edge installation.');
+        'Failed to find an installed WebView2 runtime or non-stable Microsoft Edge installation.');
 
     webViewEnvironment = await WebViewEnvironment.create(
         settings: WebViewEnvironmentSettings(
-          additionalBrowserArguments: kDebugMode
-              ? '--enable-features=msEdgeDevToolsWdpRemoteDebugging'
-              : null,
-          userDataFolder: 'custom_path',
-        ));
+      additionalBrowserArguments: kDebugMode
+          ? '--enable-features=msEdgeDevToolsWdpRemoteDebugging'
+          : null,
+      userDataFolder: 'custom_path',
+    ));
 
     /*webViewEnvironment?.onBrowserProcessExited = (detail) {
       if (kDebugMode) {
@@ -89,28 +89,28 @@ class _FirstRouteState extends State<FirstRoute> {
           children: [
             ElevatedButton(
               style:
-              ElevatedButton.styleFrom(backgroundColor: Colors.amberAccent),
+                  ElevatedButton.styleFrom(backgroundColor: Colors.amberAccent),
               child: loading
                   ? const SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircularProgressIndicator(
-                        color: Colors.purple,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              color: Colors.purple,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Text("Creating payment request...")
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Text("Creating payment request...")
-                  ],
-                ),
-              )
+                    )
                   : const Text("Checkout Form"),
               onPressed: () async {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -131,16 +131,14 @@ class _FirstRouteState extends State<FirstRoute> {
   }
 
   void _validateMerchantKeys() async {
-
-    debugPrint(FlutterPayOrc.instance.preferenceHelper.merchantKey);
-    debugPrint(FlutterPayOrc.instance.preferenceHelper.merchantSecret);
+    debugPrint(await FlutterPayOrc.instance.getMerchantKey());
+    debugPrint(await FlutterPayOrc.instance.getMerchantSecret());
 
     await FlutterPayOrc.instance.validateMerchantKeys(
         request: PayOrcKeysRequest(
             merchantKey: 'test-JR11KGG26DM',
             merchantSecret: 'sec-DC111UM26HQ',
-            env: FlutterPayOrc.instance.configMemoryHolder.envType
-        ),
+            env: FlutterPayOrc.instance.configMemoryHolder.envType),
         successResult: (message) {
           showKeyStatusDialog(message);
         },

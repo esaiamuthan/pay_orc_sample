@@ -40,8 +40,8 @@ dependencies:
 #  flutter_pay_orc: ^0.0.5
 
   flutter_pay_orc:
-#    path: /home/ocs-60/StudioProjects/flutter_pay_orc
-    path: D:\AndroidStudioProjects\flutter_pay_orc
+    path: /home/ocs-60/StudioProjects/flutter_pay_orc
+#    path: D:\AndroidStudioProjects\flutter_pay_orc
 
 dev_dependencies:
   flutter_test:

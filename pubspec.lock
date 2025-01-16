@@ -310,7 +310,7 @@ packages:
   flutter_pay_orc:
     dependency: "direct main"
     description:
-      path: "D:\\AndroidStudioProjects\\flutter_pay_orc"
+      path: "/home/ocs-60/StudioProjects/flutter_pay_orc"
       relative: false
     source: path
     version: "0.0.5"
