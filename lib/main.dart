@@ -12,6 +12,8 @@ WebViewEnvironment? webViewEnvironment;
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterPayOrc.initialize(
+    merchantKey: 'test-JR11KGG26DM',
+    merchantSecret: 'sec-DC111UM26HQ',
     environment: Environment.test, // Switch to Environment.production for live
   );
   if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
@@ -121,49 +123,6 @@ class _FirstRouteState extends State<FirstRoute> {
           ],
         ),
       ),
-    );
-  }
-
-  @override
-  void initState() {
-    _validateMerchantKeys();
-    super.initState();
-  }
-
-  void _validateMerchantKeys() async {
-    debugPrint(await FlutterPayOrc.instance.getMerchantKey());
-    debugPrint(await FlutterPayOrc.instance.getMerchantSecret());
-
-    await FlutterPayOrc.instance.validateMerchantKeys(
-        request: PayOrcKeysRequest(
-            merchantKey: 'test-JR11KGG26DM',
-            merchantSecret: 'sec-DC111UM26HQ',
-            env: FlutterPayOrc.instance.configMemoryHolder.envType),
-        successResult: (message) {
-          showKeyStatusDialog(message);
-        },
-        errorResult: (message) {
-          showKeyStatusDialog(message);
-        });
-  }
-
-  void showKeyStatusDialog(String? message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Status"),
-          content: Text("$message"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
     );
   }
 }
