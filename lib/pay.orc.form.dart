@@ -649,6 +649,8 @@ class _PayOrcFormState extends State<PayOrcForm> {
   Future<void> _fetchTransaction(BuildContext context, String? pOrderId) async {
     final transaction = await FlutterPayOrc.instance.fetchPaymentTransaction(
       orderId: pOrderId.toString(),
+      onLoadingResult: (loading) {
+      },
       errorResult: (message) {
         debugPrint('errorResult $message');
         _showErrorAlert(context, message);
