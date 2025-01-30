@@ -634,6 +634,11 @@ class _PayOrcFormState extends State<PayOrcForm> {
         context: context,
         request: createPayOrcPaymentRequest(),
         onPopResult: (String? pOrderId) async {
+          setState(() {
+            _selectedCaptureMethod = null;
+            _selectedClassName = null;
+            _selectedAction = null;
+          });
           _clearAllFields();
           await _fetchTransaction(context, pOrderId);
         },
@@ -649,16 +654,16 @@ class _PayOrcFormState extends State<PayOrcForm> {
   Future<void> _fetchTransaction(BuildContext context, String? pOrderId) async {
     final transaction = await FlutterPayOrc.instance.fetchPaymentTransaction(
       orderId: pOrderId.toString(),
-      onLoadingResult: (loading) {
-      },
+      onLoadingResult: (loading) {},
       errorResult: (message) {
         debugPrint('errorResult $message');
         _showErrorAlert(context, message);
       },
     );
-    if (transaction != null) {
+    if (transaction != null && context.mounted) {
       debugPrint('transaction ${transaction.toJson()}');
       FlutterPayOrc.instance.clearData();
+      Navigator.of(context).pop();
     }
   }
 
@@ -683,12 +688,6 @@ class _PayOrcFormState extends State<PayOrcForm> {
   }
 
   void _clearAllFields() {
-    setState(() {
-      _selectedCaptureMethod = null;
-      _selectedClassName = null;
-      _selectedAction = null;
-    });
-
     _orderIdController.clear();
     _amountController.clear();
     _convenienceFeeController.clear();

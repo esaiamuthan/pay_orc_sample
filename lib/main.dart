@@ -1,52 +1,14 @@
-// import 'package:constructor_io_flutter/constructor_io.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_pay_orc/flutter_pay_orc.dart';
 import 'package:web_view_sample/pay.orc.form.dart';
-
-final localhostServer = InAppLocalhostServer(documentRoot: 'assets');
-// late ConstructorIo constructorIo;
-WebViewEnvironment? webViewEnvironment;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterPayOrc.initialize(
     merchantKey: 'test-JR11KGG26DM',
     merchantSecret: 'sec-DC111UM26HQ',
-    environment: Environment.test, // Switch to Environment.production for live
+    environment: Environment.test, // Switch to Environment.live for live
   );
-  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
-    final availableVersion = await WebViewEnvironment.getAvailableVersion();
-    assert(availableVersion != null,
-        'Failed to find an installed WebView2 runtime or non-stable Microsoft Edge installation.');
-
-    webViewEnvironment = await WebViewEnvironment.create(
-        settings: WebViewEnvironmentSettings(
-      additionalBrowserArguments: kDebugMode
-          ? '--enable-features=msEdgeDevToolsWdpRemoteDebugging'
-          : null,
-      userDataFolder: 'custom_path',
-    ));
-
-    /*webViewEnvironment?.onBrowserProcessExited = (detail) {
-      if (kDebugMode) {
-        print('Browser process exited with detail: $detail');
-      }
-    };*/
-  }
-
-  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-    await InAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
-  }
-  if (!kIsWeb) {
-    await localhostServer.start();
-  }
-  // constructorIo = await ConstructorIo.create(apiKey: 'key_K2hlXt5aVSwoI1Uw');
-  // Set the user ID (for a logged in user) used for cross device personalization
-  // constructorIo.userId = "uid";
-  // await constructorIo.sessionStart();
-  // print('constructorIo:-->Session ID -> ${await constructorIo.getSessionId()}');
   runApp(const MyApp());
 }
 
@@ -77,6 +39,12 @@ class FirstRoute extends StatefulWidget {
 
 class _FirstRouteState extends State<FirstRoute> {
   bool loading = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
