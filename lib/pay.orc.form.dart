@@ -544,9 +544,6 @@ class _PayOrcFormState extends State<PayOrcForm> {
         errorResult: (message) {
           debugPrint('errorResult : $message');
           _showErrorAlert(context, message);
-        },
-        onLoadingResult: (bool success) {
-          debugPrint('onLoadingResult : $success');
         });
   }
 
