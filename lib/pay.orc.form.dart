@@ -79,99 +79,6 @@ class _PayOrcFormState extends State<PayOrcForm> {
   final List<Map<String, TextEditingController>> _parametersControllers = [];
   final List<Map<String, TextEditingController>> _customDataControllers = [];
 
-  final names = [
-    'John John',
-    'Jane John',
-    'Alex John',
-    'Chris John',
-    'Taylor John'
-  ];
-  final List<String> phoneNumbers =
-      List.generate(20, (index) => _generateRandomPhoneNumber());
-
-  static String _generateRandomPhoneNumber() {
-    final random = Random();
-    // Generate a random 10-digit phone number
-    String number = '';
-    for (int i = 0; i < 10; i++) {
-      number += random.nextInt(10).toString();
-    }
-    return number;
-  }
-
-  final List<String> phoneCodes = [
-    "1",
-    "44",
-    "91",
-    "1",
-    "61",
-    "49",
-    "33",
-    "81",
-    "86",
-    "55"
-  ];
-
-  final cities = [
-    "Springfield",
-    "Riverside",
-    "Fairview",
-    "Centerville",
-    "Franklin"
-  ];
-  final states = ["CA", "TX", "NY", "FL", "IL"];
-  final List<String> addresses =
-      List.generate(20, (index) => _generateRandomAddress());
-
-  static String _generateRandomAddress() {
-    const streets = [
-      "Main St",
-      "Highland Ave",
-      "Elm St",
-      "Maple Ave",
-      "Broadway",
-      "Park Rd",
-      "Sunset Blvd"
-    ];
-    final random = Random();
-    final street =
-        "${random.nextInt(9999) + 1} ${streets[random.nextInt(streets.length)]}";
-    return street;
-  }
-
-  final List<String> emailList =
-      List.generate(20, (index) => _generateRandomEmail());
-
-  static String _generateRandomEmail() {
-    const firstNames = [
-      'john',
-      'jane',
-      'alex',
-      'mike',
-      'sarah',
-      'emily',
-      'david',
-      'laura'
-    ];
-    const domains = [
-      'gmail.com',
-      'yahoo.com',
-      'outlook.com',
-      'hotmail.com',
-      'example.com'
-    ];
-    final random = Random();
-
-    // Select a random first name
-    final firstName = firstNames[random.nextInt(firstNames.length)];
-    // Append a random number to the name
-    final number = random.nextInt(9999).toString();
-    // Select a random domain
-    final domain = domains[random.nextInt(domains.length)];
-
-    return '$firstName$number@$domain';
-  }
-
   final random = Random();
 
   @override
@@ -205,47 +112,33 @@ class _PayOrcFormState extends State<PayOrcForm> {
           TextButton(
               onPressed: () {
                 // Names
-                _nameController.text = names[random.nextInt(names.length)];
-                _shippingNameController.text =
-                    names[random.nextInt(names.length)];
+                _nameController.text = 'John Dev';
+                _shippingNameController.text = 'John';
 
                 // email
-                _emailController.text =
-                    emailList[random.nextInt(emailList.length)];
-                _shippingEmailController.text =
-                    emailList[random.nextInt(emailList.length)];
+                _emailController.text = 'test@mail.com';
+                _shippingEmailController.text = 'test@mail.com';
 
                 // address
-                _billingAddress1Controller.text =
-                    addresses[random.nextInt(addresses.length)];
-                _billingAddress2Controller.text =
-                    addresses[random.nextInt(addresses.length)];
-                _shippingAddress1Controller.text =
-                    addresses[random.nextInt(addresses.length)];
-                _shippingAddress2Controller.text =
-                    addresses[random.nextInt(addresses.length)];
+                _billingAddress1Controller.text = 'address 1';
+                _billingAddress2Controller.text = 'address2';
+                _shippingAddress1Controller.text = 'address 1';
+                _shippingAddress2Controller.text = 'address 2';
 
                 // city
-                _billingCityController.text =
-                    cities[random.nextInt(cities.length)];
-                _shippingCityController.text =
-                    cities[random.nextInt(cities.length)];
+                _billingCityController.text = 'Chennai';
+                _shippingCityController.text = 'Chennai';
 
                 // city
-                _mobileController.text =
-                    phoneNumbers[random.nextInt(phoneNumbers.length)];
-                _shippingMobileController.text =
-                    phoneNumbers[random.nextInt(phoneNumbers.length)];
+                _mobileController.text = '9874563210';
+                _shippingMobileController.text = '9856321470';
 
-                _codeController.text =
-                    phoneCodes[random.nextInt(phoneCodes.length)];
-                _shippingCodeController.text =
-                    phoneCodes[random.nextInt(phoneCodes.length)];
+                _codeController.text = '91';
+                _shippingCodeController.text = '91';
 
                 // zipcode
-                _billingPinController.text = "${random.nextInt(89999) + 10000}";
-                _shippingPinController.text =
-                    "${random.nextInt(89999) + 10000}";
+                _billingPinController.text = "600006";
+                _shippingPinController.text = "600006";
 
                 _orderIdController.text = "${random.nextInt(89999) + 10000}";
                 _customerIdController.text = "${random.nextInt(89999) + 10000}";
@@ -256,6 +149,12 @@ class _PayOrcFormState extends State<PayOrcForm> {
                 _amountController.text = "100";
                 _shippingAmountController.text = "10";
                 _convenienceFeeController.text = "2";
+
+                _billingProvinceController.text = "Tamil Nadu";
+                _shippingProvinceController.text = "Tamil Nadu";
+
+                _billingCountryController.text = "IN";
+                _shippingCountryController.text = "IN";
               },
               child: const Text('Prefill'))
         ],
