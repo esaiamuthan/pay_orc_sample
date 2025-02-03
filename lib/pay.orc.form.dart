@@ -414,7 +414,7 @@ class _PayOrcFormState extends State<PayOrcForm> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amberAccent),
                 onPressed: () {
-                  _createPaymentRequest();
+                  _createPaymentRequest(context);
                 },
                 child: const Text("Pay now with PayOrc widget"),
               ),
@@ -528,16 +528,16 @@ class _PayOrcFormState extends State<PayOrcForm> {
     );
   }
 
-  void _createPaymentRequest() async {
+  void _createPaymentRequest(BuildContext context) async {
     await FlutterPayOrc.instance.createPaymentWithWidget(
         context: context,
         request: createPayOrcPaymentRequest(),
         onPopResult: (String? pOrderId) async {
-          setState(() {
-            _selectedCaptureMethod = null;
-            _selectedClassName = null;
-            _selectedAction = null;
-          });
+          // setState(() {
+          //   _selectedCaptureMethod = null;
+          //   _selectedClassName = null;
+          //   _selectedAction = null;
+          // });
           _clearAllFields();
           await _fetchTransaction(context, pOrderId);
         },
