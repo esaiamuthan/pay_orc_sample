@@ -326,10 +326,9 @@ packages:
   flutter_pay_orc:
     dependency: "direct main"
     description:
-      name: flutter_pay_orc
-      sha256: "833dce92ea2cea6c92cdf7730e691211a865b09a348a620e15feef3ae577c95e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "D:\\AndroidStudioProjects\\flutter_pay_orc"
+      relative: false
+    source: path
     version: "1.0.0"
   flutter_test:
     dependency: "direct dev"
