@@ -329,7 +329,7 @@ packages:
       path: "D:\\AndroidStudioProjects\\flutter_pay_orc"
       relative: false
     source: path
-    version: "1.0.0"
+    version: "1.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter

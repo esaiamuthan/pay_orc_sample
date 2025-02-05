@@ -13,9 +13,9 @@ class PayOrcForm extends StatefulWidget {
 class _PayOrcFormState extends State<PayOrcForm> {
   final _formKey = GlobalKey<FormState>();
 
-  PayOrcClass? _selectedClassName;
-  PayOrcAction? _selectedAction;
-  PayOrcCaptureMethod? _selectedCaptureMethod;
+  PayOrcClass? _selectedClassName = PayOrcClass.ecom;
+  PayOrcAction? _selectedAction = PayOrcAction.sale;
+  PayOrcCaptureMethod? _selectedCaptureMethod = PayOrcCaptureMethod.manual;
 
   final List<PayOrcClass> classNames = PayOrcClass.values.toList();
   final List<PayOrcAction> actions = PayOrcAction.values.toList();
